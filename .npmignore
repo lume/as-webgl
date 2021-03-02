@@ -1,8 +1,10 @@
 # development resources
 src/**/*
 docs/**/*
-examples/**/*
 config/**/*
+
+# examples
+examples
 
 # locks
 **/*.lock

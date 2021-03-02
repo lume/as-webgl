@@ -1,17 +1,16 @@
 {
-  "name": "as-gl",
-  "version": "0.0.2",
-  "description": "An OpenGL & WebGL Typescript Library for AssemblyScript WebAssembly.",
-  "main": "lib/as-gl.cjs.js",
-  "module": "lib/as-gl.esm.js",
-  "browser": "lib/as-gl.umd.js",
-  "types": "lib/as-gl.d.ts",
+  "name": "aswebgl",
+  "version": "0.0.4",
+  "description": "A WebGL Typescript Library for AssemblyScript WebAssembly.",
+  "main": "lib/aswebgl.cjs.js",
+  "module": "lib/aswebgl.esm.js",
+  "browser": "lib/aswebgl.umd.js",
+  "types": "lib/aswebgl.d.ts",
   "scripts": {
-    "postinstall": "npm link as-gl --force",
+    "postinstall": "npm link aswebgl --force",
     "build": "concurrently -n roll,type \"npm:build:roll\" \"npm:build:type\"",
     "build:roll": "npx rollup --config config/rollup.config.js",
-    "build:type": "npx tsc src/index.ts --outFile lib/as-gl.amd.js --declaration --module amd",
-    "publish": "np --any-branch",
+    "build:type": "npx tsc src/index.ts --outFile lib/aswebgl.amd.js --declaration --module amd",
     "clean": "rimraf dist"
   },
   "repository": {
@@ -43,5 +42,6 @@
     "Graphics",
     "WebGL",
     "3d"
-  ]
+  ],
+  "dependencies": {}
 }
