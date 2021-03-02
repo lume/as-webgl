@@ -3,9 +3,11 @@ import commonjs from '@rollup/plugin-commonjs';
 import typescript from '@rollup/plugin-typescript';
 import pkg from '../package.json';
 
+/** Base configuration parameters */
 const cfg = {
-    input: "src/index.ts",
-    tsconfig: "config/tsconfig.json"
+    inputFile: "src/index.ts",
+    tsconfig: "config/tsconfig.json",
+    sourceMap: true
 }
 
 /**
@@ -16,53 +18,53 @@ const cfg = {
  */
 export default [
     { // BROWSER JS MODULE (UMD)
-        input: 'src/index.ts',
+        input: cfg.inputFile,
         plugins: [
             resolve({
                 browser: true
             }),
             typescript({
-                sourceMap: true,
-                tsconfig: "config/tsconfig.json"
+                sourceMap: cfg.sourceMap,
+                tsconfig: cfg.tsconfig
             })
         ],
         output: [{ 
-            sourcemap: true,
+            sourcemap: cfg.sourceMap,
             file: pkg.browser, 
             name: pkg.name, 
             format: 'umd'
         }]
     }, { // ESM JS BUNDLE 
-        input: 'src/index.ts',
+        input: cfg.inputFile,
         plugins: [
             resolve({
                 browser: true
             }),
             typescript({
-                sourceMap: true,
-                tsconfig: "config/tsconfig.json"
+                sourceMap: cfg.sourceMap,
+                tsconfig: cfg.tsconfig
             })
         ],
         output: [{ 
-            sourcemap: true,
+            sourcemap: cfg.sourceMap,
             file: pkg.module, 
             name: pkg.name, 
             format: 'es'
         }]
     }, { // COMMON JS BUNDLE
-        input: 'src/index.ts',
+        input: cfg.inputFile,
         plugins: [
             resolve({
                 browser: true
             }),
             commonjs(),
             typescript({
-                sourceMap: true,
-                tsconfig: "config/tsconfig.json"
+                sourceMap: cfg.sourceMap,
+                tsconfig: cfg.tsconfig
             })
         ],
         output: [{ 
-            sourcemap: true,
+            sourcemap: cfg.sourceMap,
             file: pkg.main, 
             name: pkg.name, 
             format: 'cjs'
