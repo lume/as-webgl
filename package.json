@@ -1,0 +1,12 @@
+{
+  "name": "@lume/as-webgl",
+  "version": "0.0.1",
+  "description": "A WebGL Typescript Library for AssemblyScript WebAssembly.",
+  "main": "index.js",
+  "repository": "git@github.com:lume/as-webgl.git",
+  "author": "Kara Rawson <rawsonkara@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "build": "echo TODO build script"
+  }
+}
