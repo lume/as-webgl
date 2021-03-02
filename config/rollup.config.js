@@ -19,12 +19,12 @@ export default [
             typescript({
                 sourceMap: true,
                 tsconfig: "config/tsconfig.json",
-                module: "ESNext"
+                module: ""
             })
         ],
         output: [{ 
             sourcemap: true,
-            file: pkg.browser, 
+            file: "lib/as-webgl.umd.js", 
             name: pkg.name, 
             format: 'umd'
         }]
