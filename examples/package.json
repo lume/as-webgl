@@ -1,0 +1,11 @@
+{
+  "name": "@aswebglue/examples",
+  "version": "0.0.1",
+  "description": "Example project for AssemblyScript WebGL javascript bindings.",
+  "main": "index.js",
+  "author": "Kara Rawson <rawsonkara@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "build": "echo TODO build script for examples"
+  }
+}
