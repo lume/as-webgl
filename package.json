@@ -1,12 +1,47 @@
 {
-  "name": "@lume/as-webgl",
-  "version": "0.0.1",
+  "name": "aswebgl",
+  "version": "0.0.4",
   "description": "A WebGL Typescript Library for AssemblyScript WebAssembly.",
-  "main": "index.js",
-  "repository": "git@github.com:lume/as-webgl.git",
+  "main": "lib/aswebgl.cjs.js",
+  "module": "lib/aswebgl.esm.js",
+  "browser": "lib/aswebgl.umd.js",
+  "types": "lib/aswebgl.d.ts",
+  "scripts": {
+    "postinstall": "npm link aswebgl --force",
+    "build": "concurrently -n roll,type \"npm:build:roll\" \"npm:build:type\"",
+    "build:roll": "npx rollup --config config/rollup.config.js",
+    "build:type": "npx tsc src/index.ts --outFile lib/aswebgl.amd.js --declaration --module amd",
+    "clean": "rimraf dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:lume/as-webgl.git"
+  },
+  "bugs": {
+    "url": "https://github.com/lume/glas/issues",
+    "email": "bugs@lume.io"
+  },
   "author": "Kara Rawson <rawsonkara@gmail.com>",
   "license": "MIT",
-  "scripts": {
-    "build": "echo TODO build script"
-  }
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^17.1.0",
+    "@rollup/plugin-node-resolve": "^11.2.0",
+    "@rollup/plugin-typescript": "^8.2.0",
+    "concurrently": "^6.0.0",
+    "rimraf": "^3.0.2",
+    "rollup": "^2.40.0",
+    "ts-node": "^9.1.1",
+    "tslib": "^2.1.0",
+    "typescript": "^4.2.2"
+  },
+  "private": false,
+  "keywords": [
+    "AssemblyScript",
+    "WebAssembly",
+    "Typescript",
+    "Graphics",
+    "WebGL",
+    "3d"
+  ],
+  "dependencies": {}
 }

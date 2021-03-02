@@ -1,0 +1,13 @@
+# development resources
+src/**/*
+docs/**/*
+config/**/*
+
+# examples
+examples
+
+# locks
+**/*.lock
+
+# logs
+**/*.log
