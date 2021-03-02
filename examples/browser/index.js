@@ -1,45 +1,53 @@
-// const fs = require("fs");
-// const loader = require("@assemblyscript/loader");
-// const imports = { /* imports go here */ };
-// const wasmModule = loader.instantiateSync(fs.readFileSync(__dirname + "/build/optimized.wasm"), imports);
-// module.exports = wasmModule.exports;
+/**
+ * Our direct relative reference to the loader for use by `live-server. When
+ * using WebPack you can call with `@assemblyscript/loader` becuase it is bundled
+ * with your web app.
+ */
+import loader from "./node_modules/@assemblyscript/loader/index.js"; // or require
 
-
-/** our runtime wasm binary */
-const wasm = {
-    file: fetch("../build/index.wasm")
-  }
-  
-  /** Main entry point for javascript host */
-  function main() {
-    WebAssembly
-      .instantiateStreaming(wasm.file, imports)
-      .then(run)
-      .catch(console.error);
-  }
-  
-  function run(result) {
-    wasm.instance = result.instance
-    wasm.exports = result.instance.exports
-    console.log(wasm)
-  
-    const exports = result.instance.exports;
-    document.getElementById("container").textContent = "Result: " + exports.add(19, 23);
-  }
-  
-  function log() {
-    console.log("Hello from WebAssembly!");
-  }
-  
-  const imports = {
-    main: {
-      log
-    },
-    env: {
-      abort(_msg, _file, line, column) {
-        console.error("abort called at main.ts:" + line + ":" + column);
-      }
+/**
+ * typically we can store our import tables into another file 
+ * that gets imports with our loader. The `index` is the name of your 
+ * Assembly entry point file, this is the default namespace
+ */
+const index = {
+    sayHello() {
+        console.log("Hello from WebAssembly!");
     }
-  }
-  
-  main()
+}
+
+const env = {
+    abort(_msg, _file, line, column) {
+        console.error("abort called at index.ts:" + line + ":" + column);
+    }
+}
+
+
+/** Our WebAssembly object for the loader */
+const wasm = {
+    file: fetch("build/index.wasm"),
+    exports: {},
+    imports: {
+        index,
+        env
+    }
+}
+
+/** called after we load our wasm binary */
+const run = ({ exports }) => {
+    // save our export references
+    wasm.exports = exports
+    // test our exports
+    document.getElementById("container").textContent =
+        "Answer to the Universe: " + exports.add(19, 23);
+
+    // inspecta' deck
+    console.log(wasm)
+}
+
+/** execute our WebAssembly binary */
+loader
+    .instantiate(
+        wasm.file,
+        wasm.imports)
+    .then(run)

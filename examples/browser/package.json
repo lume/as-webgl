@@ -6,7 +6,7 @@
   "author": "Kara Rawson <rawsonkara@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "build": "asc assembly/index.ts -b build/index.wasm --noUnsafe --sourceMap --debug",
+    "build": "asc assembly/index.ts -b build/index.wasm --exportRuntime --exportTable --noUnsafe --sourceMap --debug",
     "prestart": "npm i && npm run build",
     "server": "live-server ./",
     "start": "npm run server",
