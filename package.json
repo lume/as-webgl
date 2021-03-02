@@ -1,6 +1,6 @@
 {
   "name": "as-gl",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "An OpenGL & WebGL Typescript Library for AssemblyScript WebAssembly.",
   "main": "lib/as-gl.cjs.js",
   "module": "lib/as-gl.esm.js",
