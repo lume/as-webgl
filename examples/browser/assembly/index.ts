@@ -1,7 +1,21 @@
-declare function sayHello(): void;
+/**
+ * The module entrypoint used by the loader
+ * 
+ * @author Kara Rawson <rawsonkara@gmail.com
+ */
 
-sayHello();
+export * from "./example"
+export * from "./imports"
 
-export function add(x: i32, y: i32): i32 {
-  return x + y;
+import { example } from "./example"
+import { __hello } from "./imports"
+
+/** 
+ * loader entry point for our module that is called automatically. This
+ * function gets called first.
+ */
+export function _start(): void {
+  __hello();            // makes callback to js host (from imports)
+  // example.add()
+  example.__add(19, 21)  // call our export function internally
 }

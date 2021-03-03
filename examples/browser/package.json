@@ -1,15 +1,15 @@
 {
-  "name": "@aswebglue/examples",
+  "name": "@as-webgl/examples",
   "version": "0.0.1",
   "description": "Example project for AssemblyScript WebGL javascript bindings.",
   "main": "index.js",
   "author": "Kara Rawson <rawsonkara@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "build": "asc assembly/index.ts -b build/index.wasm --exportRuntime --exportTable --noUnsafe --sourceMap --debug",
+    "build": "asc assembly/index.ts -b build/module.wasm --exportRuntime --exportTable --noUnsafe --sourceMap --debug",
     "prestart": "npm i && npm run build",
-    "server": "live-server ./",
-    "start": "npm run server",
+    "serve": "live-server ./",
+    "start": "npm run serve",
     "clean": "rimraf build"
   },
   "repository": {
